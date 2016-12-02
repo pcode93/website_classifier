@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="classifier">
+    <head>
+        <title>Website Classifier</title>
+        <meta charset="utf8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <style>
+            html, body {
+                height: 100%;
+                width: 100%;
+            }
+            h1 {
+                text-align: center;
+                font-weight: 200;
+                margin-bottom: 2em;
+            }
+            .center {
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                position: absolute;
+            }
+            .container-full {
+                height: 100%;
+                width: 100%;
+                position: relative;
+            }
+            .search-bar {
+                width: 50%;
+                transition: 250ms all;
+            }
+            .list-group-item {
+                width: 50%;
+                margin: auto;
+            }
+        </style>
+    </head>
+    <body ng-controller="searchController">
+        <div class="container-full">
+            <div class="search-bar center">
+                <div class="input-group">
+                    <input type="text" ng-model="url" class="form-control" placeholder="Enter website url">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" ng-click="classify(url)">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+            
+        </div>
+        <div class="container-full results">
+            <h1>Similiar websites</h1>
+            <div class="list-group" ng-repeat="website in similiarWebsites">
+                <a ng-href="{{website}}" target="_blank" class="list-group-item">{{website}}</a>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+                integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+                crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+        <script>
+            var classifier = angular.module('classifier', [])
+                .controller('searchController', function($scope, $http) {
+                    $scope.classify = function(url) {
+                        setTimeout(function() {
+                            $scope.$apply(function() {
+                                $scope.similiarWebsites = ['http://google.com', 'http://facebook.com']
+                                angular.element('html, body').animate({
+                                    scrollTop: angular.element('.results').position().top
+                                })
+                            })
+                        }, 1000)
+                    }
+                })
+        </script>
+    </body>
+</html>
