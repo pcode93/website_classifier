@@ -65,7 +65,7 @@
                     $scope.classify = function(url) {
                         $http.get('classify/' + url)
                             .then(function(response) {
-                                $scope.similiarWebsites = ['http://google.com', 'http://facebook.com']
+                                $scope.similiarWebsites = typeof response.data === 'string' ? [response.data] : response.data;
                                 angular.element('html, body').animate({
                                     scrollTop: angular.element('.results').position().top
                                 });
