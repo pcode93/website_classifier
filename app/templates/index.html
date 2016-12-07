@@ -63,14 +63,15 @@
             var classifier = angular.module('classifier', [])
                 .controller('searchController', function($scope, $http) {
                     $scope.classify = function(url) {
-                        setTimeout(function() {
-                            $scope.$apply(function() {
+                        $http.get('classify/' + url)
+                            .then(function(response) {
                                 $scope.similiarWebsites = ['http://google.com', 'http://facebook.com']
                                 angular.element('html, body').animate({
                                     scrollTop: angular.element('.results').position().top
-                                })
+                                });
+                            }, function(err) {
+                                console.log(err);
                             })
-                        }, 1000)
                     }
                 })
         </script>
