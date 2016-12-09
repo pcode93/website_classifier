@@ -10,7 +10,8 @@ training_set = [
     {'text': 'do not neglect exercise', 'category': 'health'},
     {'text': 'Syria is the main issue, Obama says', 'category': 'politics'},
     {'text': 'eat to lose weight', 'category': 'health'},
-    {'text': 'you should not eat much', 'category': 'health'}
+    {'text': 'you should not eat much', 'category': 'health'},
+    {'text': 'Google is awesome', 'category': 'technology'}
 ]
 
 for training in training_set:
@@ -24,7 +25,14 @@ def classify(text):
 
     # the classification variable holds the possible categories sorted by 
     # their probablity value
-    print classification
+    probablity = 0
+    result = 'No category'
+    for category, val in classification:
+        if val > probablity:
+            probablity = val
+            result = category
+
+    return result
 
 if __name__ == '__main__':
-    classify("Even if I eat too much, is not it possible to lose some weight")
+    print classify("Even if I eat too much, is not it possible to lose some weight")
