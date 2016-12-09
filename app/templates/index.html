@@ -40,12 +40,12 @@
             <div class="search-bar center">
                 <div class="input-group">
                     <input type="text" ng-model="url" class="form-control" placeholder="Enter website url">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button" ng-click="classify(url)">
-                            <i class="glyphicon glyphicon-search"></i>
-                        </button>
-                    </span>
-                </div>
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" ng-click="classify(url)">
+                                <i class="glyphicon glyphicon-search"></i>
+                            </button>
+                        </span>
+                        </div>
             </div>
             
         </div>
@@ -56,24 +56,24 @@
             </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"
-                integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-                crossorigin="anonymous"></script>
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
         <script>
             var classifier = angular.module('classifier', [])
-                .controller('searchController', function($scope, $http) {
-                    $scope.classify = function(url) {
+            .controller('searchController', function($scope, $http) {
+                        $scope.classify = function(url) {
                         $http.get('classify/' + url)
-                            .then(function(response) {
-                                $scope.similiarWebsites = typeof response.data === 'string' ? [response.data] : response.data;
-                                angular.element('html, body').animate({
-                                    scrollTop: angular.element('.results').position().top
-                                });
-                            }, function(err) {
-                                console.log(err);
-                            })
-                    }
-                })
-        </script>
+                        .then(function(response) {
+                              $scope.similiarWebsites = typeof response.data === 'string' ? [response.data] : response.data;
+                              angular.element('html, body').animate({
+                                                                    scrollTop: angular.element('.results').position().top
+                                                                    });
+                              }, function(err) {
+                              console.log(err);
+                              })
+                        }
+                        })
+            </script>
     </body>
 </html>
