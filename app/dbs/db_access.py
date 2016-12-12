@@ -11,6 +11,6 @@ def get_urls( category_name ):
         urls.append(page.url)
     return urls
 
-def json_response( category_name ):
+def get_urls_as_json( category_name ):
     data = get_urls( category_name )
     return json.dumps({'category': category_name, 'websites': data}, sort_keys=True, indent=4, separators=(',',':'))
