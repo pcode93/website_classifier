@@ -71,7 +71,7 @@
                                 scrollTop: angular.element('.results').position().top
                             });
                         }, function(err) {
-                            console.log(err);
+                            alert(err.data.error);
                         })
                 }
             })
