@@ -6,4 +6,4 @@ flask/bin/pip install flask-sqlalchemy
 flask/bin/pip install bs4
 flask/bin/pip install naiveBayesClassifier
 
-./run.py
+flask/bin/python ./run.py
