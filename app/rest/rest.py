@@ -24,8 +24,12 @@ def api_article(url):
         return make_response(response, e.code)
     
     except URLError, e:
-        return make_response(jsonify(error = 'URL ERROR'), 404)
+        return make_response(jsonify(error = 'URL Error'), 404)
     
     except ValueError, e:
         response = jsonify(error = 'We failed to reach a server. \n\r Did you selected http?')
+        return make_response(response, 404)
+
+    except:
+        response = jsonify(error = 'The operation failed')
         return make_response(response, 404)
