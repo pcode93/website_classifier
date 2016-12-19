@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from bs4 import BeautifulSoup
 import urllib2
 
@@ -6,7 +8,6 @@ def get_text(url):
 
     for resource in html(['script', 'style']):
         resource.decompose()
-
     return html.get_text()
 
 if __name__ == '__main__':
