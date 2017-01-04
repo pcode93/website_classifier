@@ -12,7 +12,7 @@ class Category(db.Model):
 
 class Page(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    url = db.Column(db.String(140))#, index=True, unique=True)
+    url = db.Column(db.String(140), unique=True)#, index=True, unique=True)
     timestamp = db.Column(db.DateTime)
     categroy_id = db.Column(db.Integer, db.ForeignKey('category.id'))
 
