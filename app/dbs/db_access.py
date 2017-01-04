@@ -13,8 +13,10 @@ def get_urls( category_name ):
     return urls
 
 def add_url( category_name, url ):
-    category_ = models.Category.query.filter_by(name = category_name ).first()
-    p  = models.Page(url='url', timestamp=datetime.datetime.utcnow(), category= category_)
-    db.session.add(p)
-    db.session.commit()
+    page = models.Page.query.filter_by(url = url ).first()
+    if page == None:
+        category_ = models.Category.query.filter_by(name = category_name ).first()
+        p = models.Page(url=url, timestamp=datetime.datetime.utcnow(), category= category_)
+        db.session.add(p)
+        db.session.commit()
 
