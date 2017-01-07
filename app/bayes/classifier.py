@@ -42,6 +42,7 @@ training_set = [
     {'text': get_file_data('app/bayes/training_data/travel/8.txt'), 'category': 'travel'},
     {'text': get_file_data('app/bayes/training_data/travel/9.txt'), 'category': 'travel'},
 
+
     
                 
                 
