@@ -1,0 +1,13 @@
+{
+    "keywords": ["google", "microsoft", "software", "burger", "pizza"],
+    "categories": ["technology", "food"],
+    "training": {
+        "technology": [
+            ["google", "microsoft"],
+            ["google", "software"]
+        ],
+        "food": [
+            ["burger", "pizza"]
+        ]
+    }
+}
