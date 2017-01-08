@@ -10,18 +10,18 @@ with open('app/bayes/bayes.json') as config:
     config = json.load(config)
 
 for category in config["categories"]:
-    tc.add_category(str(category))
+    tc.add_category(category.encode('utf-8'))
 
 for keyword in config["keywords"]:
-    tc.add_keyword(str(keyword))
+    tc.add_keyword(keyword.encode('utf-8'))
 
 tc.init()
 
 for category, trainings in config["training"].iteritems():
     for training in trainings:
         ts = TrainingSet()
-        ts[:] = map(lambda w: str(w), training)
-        tc.add_training(ts, str(category))
+        ts[:] = map(lambda w: w.encode('utf-8'), training)
+        tc.add_training(ts, category.encode('utf-8'))
 
 tc.train()
 
@@ -29,3 +29,4 @@ if __name__ == '__main__':
     print(tc.classify("I prefer a burger to a pizza"))
     print(tc.classify("google is better than microsoft"))
     print(tc.classify("google software is awesome"))
+    print(tc.classify("Some random words"))

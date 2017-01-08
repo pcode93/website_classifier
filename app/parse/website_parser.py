@@ -8,7 +8,7 @@ def get_text(url):
 
     for resource in html(['script', 'style']):
         resource.decompose()
-    return html.get_text()
+    return html.get_text().encode('utf-8')
 
 if __name__ == '__main__':
     for word in get_text("http://google.com").split():

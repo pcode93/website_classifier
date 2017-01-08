@@ -44,6 +44,8 @@ public:
             attribs.push_back(createDomain(keywords[i], vals, vals + 2));
         }
 
+        add_category("none");
+
         nb = make_shared<NB>(attribs, createDomain("", classes.data(), classes.data() + classes.size()));
     }
 
@@ -53,6 +55,7 @@ public:
     }
 
     void train() {
+        add_training({}, "none");
         nb->train(trainings);
     }
 
