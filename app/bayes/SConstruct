@@ -1,0 +1,11 @@
+SharedLibrary(source=['classifier.cpp'],
+              target='classifier',
+              LIBS=['boost_python', 'boost_system', 'python2.7'],
+              CPPPATH='/usr/include/python2.7',
+              CXXFLAGS='-std=c++11',
+              SHLIBPREFIX='')
+
+Program(source=['test.cpp'],
+        target='test',
+        LIBS=['boost_system', 'boost_unit_test_framework'],
+        CXXFLAGS='-std=c++11')
