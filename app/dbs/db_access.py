@@ -16,7 +16,8 @@ def add_url( category_name, url ):
     page = models.Page.query.filter_by(url = url ).first()
     if page == None:
         category_ = models.Category.query.filter_by(name = category_name ).first()
-        p = models.Page(url=url, timestamp=datetime.datetime.utcnow(), category= category_)
-        db.session.add(p)
-        db.session.commit()
+        if category_ != None:
+            p = models.Page(url=url, timestamp=datetime.datetime.utcnow(), category= category_)
+            db.session.add(p)
+            db.session.commit()
 

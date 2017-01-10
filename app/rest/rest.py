@@ -14,6 +14,8 @@ def api_article(url):
     try:
         category_name = tc.classify(website_parser.get_text(url))
         url_list = db_access.get_urls( category_name )
+        if category_name != "none":
+            db_access.add_url(category_name, url)
         return jsonify(category=category_name, 
                         websites=url_list) if category_name != "none" else make_response(
                         jsonify(error = 'Couldn\'t classify the website'), 404)
