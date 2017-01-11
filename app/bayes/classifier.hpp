@@ -18,6 +18,11 @@ typedef NB::Domains Domains;
 typedef NB::ExampleTest ExampleTest;
 typedef NB::ExamplesTrain ExamplesTrain;
 
+/**
+ * Uses FAIF Naive Bayes Classifier for text classification.
+ * Uses a hash map to improve performance.
+ * @see init
+ */
 class TextClassifier {
 
 public:
@@ -31,6 +36,20 @@ public:
         keywords.push_back(attr);
     }
 
+    /**
+     * FAIF classifiers require a set of attributes and categories.
+     * Every attribute must have a set of possible values.
+     * In this case, the values used indicate whether a keyword appeared in the text or not.
+     *
+     * This creates a set of attributes that look like this:
+     * keyword1     keyword2    keyword3    ...
+     * yes/no       yes/no      yes/no
+     *
+     * When classifying text, it is important that values for keywords appear in the same order as remembered by the classifier.
+     * However, keywords may appear in the text in a different order or not appear at all.
+     * To avoid multiple regex calls, a hash map is used to map between keywords and their index in the set of attributes.
+     * This makes the algorithm search through the text only once.
+     */
     void init() {
         string vals[] = {"yes", "no"};
         Domains attribs;
@@ -45,16 +64,26 @@ public:
         nb = make_shared<NB>(attribs, createDomain("", classes.data(), classes.data() + classes.size()));
     }
 
+    /**
+     * Trains the classifier to associate a set of keywords with a category.
+     */
     void add_training(const vector<string>& words, const string& category) {
         const vector<string> found_keywords = find_keywords(words);
         trainings.push_back(createExample(found_keywords.data(), found_keywords.data() + keywords.size(), category, *nb));
     }
 
+    /**
+     * Passes the training data to FAIF Naive Bayes.
+     */
     void train() {
         add_training({}, "none");
         nb->train(trainings);
     }
 
+    /**
+     * Tries to find and return a category matching the text.
+     * If no category is found, returns "none".
+     */
     string classify(const string& text) {
         vector<string> words;
         boost::split(words, text, boost::is_any_of(" "));
@@ -72,6 +101,11 @@ public:
     }
 
 private:
+    /**
+     * Finds keywords in the collection of words.
+     * Uses a hash map to improve performance.
+     * @see init 
+     */
     const vector<string> find_keywords(const vector<string>& words) {
         vector<string> found_keywords(keywords.size(), "no");
 

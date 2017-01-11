@@ -3,6 +3,11 @@
 
 #include "classifier.hpp"
 
+/**
+ * Boost Python module that exports the TextClassifier class.
+ * This module also exports the TrainingSet class, which allows use of vector<string> in Python.
+ * It is needed, because the TextClassifier accepts vector<string> as keywords for training.
+ */
 BOOST_PYTHON_MODULE(classifier) {
     using namespace boost::python;
 
