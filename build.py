@@ -1,5 +1,8 @@
 #!flask/bin/python
 
+""" Database initiation
+"""
+
 
 from app import db
 from app.dbs import models

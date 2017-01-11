@@ -11,6 +11,9 @@ def api_articles():
 
 @app.route('/classify/<path:url>')
 def api_article(url):
+    """ Returns list of similar pages (urls) in json.
+        @param url URL of page to classify.
+    """
     try:
         category_name = tc.classify(website_parser.get_text(url))
         url_list = db_access.get_urls( category_name )
