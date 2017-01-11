@@ -1,3 +1,8 @@
+"""
+This module initializes a TextClassifier
+with keywords, categories and training data
+taken from bayes.json file.
+"""
 import json
 
 from classifier import TextClassifier

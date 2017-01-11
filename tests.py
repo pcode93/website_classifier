@@ -51,7 +51,6 @@ class TestApp(unittest.TestCase):
         self.DatabaseDeleteTestPagesAndCategory()
     
     def testTryToAddExistingPage(self):
-        def testAddTestPage(self):
         """Test: Try to ADD existing Page
         """
         self.DatabaseDeleteTestPagesAndCategory()
