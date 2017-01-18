@@ -1,3 +1,5 @@
+"""API for DB. Module is responsible for access to databese"""
+
 from app import db
 from app.dbs import models
 import datetime

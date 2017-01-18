@@ -1,3 +1,6 @@
+"""REST Module, handle REST requestss with /classify prefix"""
+
+
 from app import app
 from app.bayes import tc
 from app.parse import website_parser
@@ -16,12 +19,14 @@ def api_article(url):
     """
     try:
         category_name = tc.classify(website_parser.get_text(url))
+
+        if category_name == "none": raise
+
         url_list = db_access.get_urls( category_name )
-        if category_name != "none":
-            db_access.add_url(category_name, url)
+        db_access.add_url(category_name, url)
+        
         return jsonify(category=category_name, 
-                        websites=url_list) if category_name != "none" else make_response(
-                        jsonify(error = 'Couldn\'t classify the website'), 404)
+                        websites=url_list)
     
     except HTTPError, e:
         print e

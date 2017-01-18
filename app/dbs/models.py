@@ -1,3 +1,5 @@
+"""Database models of Category and Page."""
+
 from app import db
 
 

@@ -10,8 +10,12 @@ from app.dbs import db_access
 import datetime
 
 db.create_all()
+"""Database create (if not exist)"""
+
 
 categories_ = ['sport','food','politics','health','travel']
+"""Categories Definition"""
+
 
 for category_string in categories_:
     category_ = models.Category.query.filter_by(name = category_string ).first()
