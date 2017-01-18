@@ -19,4 +19,4 @@ def get_text(url):
 
 if __name__ == '__main__':
     for word in get_text("http://google.com").split():
-        print word
+        print(word)

@@ -29,20 +29,16 @@ def api_article(url):
                         websites=url_list)
     
     except HTTPError, e:
-        print e
         response = jsonify(error = 'The server couldn\'t fulfill the request.')
         return make_response(response, e.code)
     
     except URLError, e:
-        print e
         return make_response(jsonify(error = 'URL Error'), 404)
     
     except ValueError, e:
-        print e
         response = jsonify(error = 'We failed to reach a server. \n\r Did you selected http?')
         return make_response(response, 404)
 
     except Exception, e:
-        print e
         response = jsonify(error = 'The operation failed')
         return make_response(response, 404)

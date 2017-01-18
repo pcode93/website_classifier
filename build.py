@@ -25,9 +25,9 @@ for category_string in categories_:
 
 db.session.commit()
 categories = models.Category.query.all()
-print '\nCategories:'
-print categories
-print '\n'
+print('\nCategories:')
+print( categories)
+print( '\n' )
 
 sport_urls = ['http://www.bbc.com/sport','http://www.businessinsider.com/sportspage?IR=T','http://www.sport-english.com/en/']
 
@@ -60,8 +60,8 @@ for url in travel_urls:
     db_access.add_url('travel',url)
 
 for category_string in categories_:
-    print '\n\n'
-    print category_string
+    print('\n\n')
+    print(category_string)
     u = models.Category.query.filter_by(name = category_string ).first()
-    print u.pages.all()
-    print '\n\n'
+    print(u.pages.all())
+    print('\n\n')
