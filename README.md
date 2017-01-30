@@ -1,11 +1,13 @@
-cd to directory
+#Website classifier
+An application that classifies websites based on their content using Naive Bayes.
 
-sudo easy_install virtualenv
-virtualenv flask
+#Dependencies
+* AngularJS
+* Flask
+* Flask-SQLAlchemy
+* BeautifulSoup
+* Boost
+* FAIF
 
-flask/bin/pip install -I flask==0.11.1
-flask/bin/pip install -I flask-sqlalchemy==2.1
-flask/bin/pip install -I bs4==0.0.1
-
-flask/bin/python ./build.py
-flask/bin/python ./run.py
+#How to run
+python run.py
